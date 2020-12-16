@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === DEVELOPMENT) {
   routes(app);
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
   console.log(`El servidor arranco en el puerto ${PORT}`),
 );

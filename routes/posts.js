@@ -1,6 +1,12 @@
 const express = require('express');
-
-const router = express.Router();
 const postController = require('../controllers/postController');
 
-router.get('/posts', postController.getAllPosts);
+async function routes(app) {
+  const router = express.Router();
+
+  app.use('/posts', router);
+
+  router.get('/', postController.test);
+}
+
+module.exports = routes;
