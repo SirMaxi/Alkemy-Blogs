@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const routes = require('./routes/posts.js');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const routes = require('./src/routes/postRoutes');
 
+dotenv.config();
 const app = express();
+require('./src/db/database');
 
 const DEVELOPMENT = 'development';
 

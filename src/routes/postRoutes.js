@@ -4,9 +4,9 @@ const postController = require('../controllers/postController');
 async function routes(app) {
   const router = express.Router();
 
-  app.use('/posts', router);
+  app.use('/post', router);
 
-  router.get('/', postController.test);
+  router.get('/posts', postController.findPosts);
 }
 
 module.exports = routes;
