@@ -13,13 +13,14 @@ async function findPosts(req, res) {
 
 async function findPost(req, res) {
   try {
+    const Id = req.params.id;
     const post = await Post.findOne({
-      where: { id: req.params.id },
+      where: { id: Id },
     });
-    // Este if hace falta? Si no encuentra el id, no saltaria directamente al catch?
     if (post) {
-      res.json(post);
+      return res.json(post);
     }
+    res.send('Post not found');
   } catch (error) {
     res.send(Boom.badImplementation);
   }
@@ -52,8 +53,30 @@ async function createPost(req, res) {
   } catch (error) {
     res.send(Boom.badImplementation);
   }
-  // Esta bien un return null?
-  return null;
 }
 
-module.exports = { findPosts, findPost, updatePost, createPost };
+async function deletePost(req, res) {
+  try {
+    const { id } = req.params;
+    const post = await Post.findOne({
+      where: { id },
+    });
+    if (!post) {
+      return res.send(Boom.notFound);
+    }
+    await Post.destroy({
+      where: { id },
+    });
+    res.json({ message: 'The post was deleted successfully' });
+  } catch (error) {
+    res.send(Boom.badImplementation);
+  }
+}
+
+module.exports = {
+  findPosts,
+  findPost,
+  updatePost,
+  createPost,
+  deletePost,
+};
