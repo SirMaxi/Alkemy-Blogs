@@ -3,12 +3,15 @@ const Sequelize = require('sequelize');
 const PostModel = require('../models/postModel');
 
 const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.USER,
-  process.env.PASSWORD,
+  'alkemy_challenge',
+  'maximiliano',
+  'Peritomor10Mysql',
   {
-    host: process.env.HOST,
-    dialect: process.env.DIALECT,
+    host: '127.0.0.1',
+    dialect: 'mysql',
+    define: {
+      timestamps: false,
+    },
   },
 );
 
