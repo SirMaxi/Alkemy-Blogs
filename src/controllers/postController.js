@@ -22,12 +22,16 @@ async function findPost(req, res) {
     }
     res.send('Post not found');
   } catch (error) {
-    res.send(Boom.badImplementation);
+    res.send(Boom.badRequest(error));
   }
 }
 
 async function updatePost(req, res) {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const post = await Post.findOne({
       where: { id: req.params.id },
     });
@@ -38,7 +42,7 @@ async function updatePost(req, res) {
       res.send('Post updated correctly');
     }
   } catch (error) {
-    res.send(Boom.badImplementation);
+    res.send(Boom.badRequest(error));
   }
 }
 
@@ -51,7 +55,7 @@ async function createPost(req, res) {
     const post = await Post.create(req.body);
     res.json(post);
   } catch (error) {
-    res.send(Boom.badImplementation);
+    res.send(Boom.badRequest(error));
   }
 }
 
@@ -69,7 +73,7 @@ async function deletePost(req, res) {
     });
     res.json({ message: 'The post was deleted successfully' });
   } catch (error) {
-    res.send(Boom.badImplementation);
+    res.send(Boom.badRequest(error));
   }
 }
 
