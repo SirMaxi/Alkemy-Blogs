@@ -1,19 +1,20 @@
 const Sequelize = require('sequelize');
-
+const {
+  user,
+  host,
+  database,
+  password,
+  dialect,
+} = require('../config/env');
 const PostModel = require('../models/postModel');
 
-const sequelize = new Sequelize(
-  'alkemy_challenge',
-  'maximiliano',
-  'Peritomor10Mysql',
-  {
-    host: '127.0.0.1',
-    dialect: 'mysql',
-    define: {
-      timestamps: false,
-    },
+const sequelize = new Sequelize(database, user, password, {
+  host,
+  dialect,
+  define: {
+    timestamps: false,
   },
-);
+});
 
 const Post = PostModel(sequelize, Sequelize);
 
