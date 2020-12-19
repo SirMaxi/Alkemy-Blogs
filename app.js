@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 routes(app);
 
-const PORT = port || 3000;
+const PORT = port || 5000;
 app.listen(PORT, () =>
   console.log(`El servidor arranco en el puerto ${PORT}`),
 );
