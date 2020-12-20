@@ -30,7 +30,7 @@ _In the main directory of the app, you can run:_
 $ npm run start
 ```
 
-_Then open: http://localhost:3000_
+_Then open: http://localhost:5000_
 
 ## Build whit 🛠️
 
