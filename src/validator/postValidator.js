@@ -6,9 +6,9 @@ const postValidator = [
   check('title')
     .isLength({ min: 4, max: 30 })
     .withMessage('Title must have between 4 to 30 characters'),
-  check('content')
+  check('body')
     .isLength({ min: 10, max: 200 })
-    .withMessage('Content must have between 10 to 200 characters'),
+    .withMessage('Body must have between 10 to 200 characters'),
   check('image')
     .custom((url) => {
       const format = url.slice(-4);
