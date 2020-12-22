@@ -5,9 +5,9 @@ const postValidator = require('../validator/postValidator');
 async function routes(app) {
   const router = express.Router();
 
-  app.use('/post', router);
+  app.use('/posts', router);
 
-  router.get('/posts', postController.findPosts);
+  router.get('/', postController.findPosts);
   router.get('/:id', postController.findPost);
   router.put('/:id', postValidator, postController.updatePost);
   router.post('/', postValidator, postController.createPost);
